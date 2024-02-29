@@ -114,11 +114,9 @@ namespace SnakeTail
             // Ignore initial Shift + Control + Alt keys
             if (e.KeyCode == Keys.ShiftKey)
                 e.Handled = true;
-            else
-            if (e.KeyCode == Keys.ControlKey)
+            else if (e.KeyCode == Keys.ControlKey)
                 e.Handled = true;
-            else
-            if (e.KeyCode == Keys.Menu)
+            else if (e.KeyCode == Keys.Menu)
                 e.Handled = true;
             else
             {

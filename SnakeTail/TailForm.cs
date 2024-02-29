@@ -276,8 +276,7 @@ namespace SnakeTail
             _formTitleMatchFilename = tailConfig.TitleMatchFilename;
             if (_formTitleMatchFilename)
                 _formTitle = Path.GetFileName(_logTailStream.Name);
-            else
-            if (tailConfig.Title != null)
+            else if (tailConfig.Title != null)
                 _formTitle = tailConfig.Title;
             else
                 _formTitle = Path.GetFileName(tailConfig.FilePath);
@@ -419,11 +418,6 @@ namespace SnakeTail
             SetStatusBar(null);
         }
 
-        public void SetStatusBar(string text)
-        {
-            SetStatusBar(text, 0, 0);
-        }
-
         private static string ConvertFileSize(long fileSize)
         {
             string[] sizes = { "B", "KB", "MB", "GB" };
@@ -448,6 +442,11 @@ namespace SnakeTail
                 return ConvertFileSize(fileSize);
             else
                 return string.Empty;
+        }
+
+        public void SetStatusBar(string text)
+        {
+            SetStatusBar(text, 0, 0);
         }
 
         public void SetStatusBar(string text, int progressValue, int progressMax)
@@ -587,8 +586,7 @@ namespace SnakeTail
 
                 return false;
             }
-            else
-            if (matchCase)
+            else if (matchCase)
             {
                 if (lineText.Contains(searchText))
                 {
@@ -664,7 +662,7 @@ namespace SnakeTail
                 if (_logFileCache != null)
                 {
                     exceptionDetails += "LogFileCache = ";
-                    if (searchFileCache.Items != null)
+                    if (searchFileCache != null && searchFileCache.Items != null)
                         exceptionDetails += "Items = " + searchFileCache.Items.Count.ToString() + ", ";
                     else
                         exceptionDetails = "Items = null, ";
@@ -1157,9 +1155,10 @@ namespace SnakeTail
                     if (_tailListView.Items[0].Text == _logTailStream.ReadLine(1))
                         return;
                 }
-                else
-                if (_logTailStream.ValidLineCount(lineCount))
+                else if (_logTailStream.ValidLineCount(lineCount))
+                {
                     return;
+                }
 
                 lineCount = 0;
             }

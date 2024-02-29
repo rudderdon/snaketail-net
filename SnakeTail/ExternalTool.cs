@@ -22,7 +22,7 @@ namespace SnakeTail
     class ExternalTool
     {
         public readonly ExternalToolConfig ToolConfig;
-        Dictionary<ParameterName, string> _fileParameters;
+        private readonly Dictionary<ParameterName, string> _fileParameters;
 
         public enum ParameterName
         {

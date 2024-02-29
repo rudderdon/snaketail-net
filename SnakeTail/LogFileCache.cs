@@ -87,12 +87,12 @@ namespace SnakeTail
                 lineCount = logFileStream.SkipLines(Items.Count);
                 readLines = lineCount - readLines;
                 if (LoadingFileEvent != null)
-                    LoadingFileEvent(logFileStream, null);
+                    LoadingFileEvent(logFileStream, EventArgs.Empty);
             } while (readLines == Items.Count);
 
             // We are almost finished with loading the file
             if (LoadingFileEvent != null)
-                LoadingFileEvent(null, null);
+                LoadingFileEvent(null, EventArgs.Empty);
 
             if (lineCount <= 0)
                 return 0;
@@ -146,7 +146,7 @@ namespace SnakeTail
                 {
                     // We are filling the cache
                     if (FillCacheEvent != null)
-                        FillCacheEvent(this, null);
+                        FillCacheEvent(this, EventArgs.Empty);
                 }
 
                 string line = logFileStream.ReadLine(FirstIndex + i + 1);
@@ -162,7 +162,7 @@ namespace SnakeTail
 
             // We are done filling the cache
             if (FillCacheEvent != null)
-                FillCacheEvent(null, null);
+                FillCacheEvent(null, EventArgs.Empty);
 
             if (lastItem != Items.Count - 1)
                 return lastItem;
